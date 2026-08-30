@@ -1,0 +1,239 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="assets/images/icon.png" />
+    <title>Jiss James | Portfolio</title>
+    <meta
+      name="description"
+      content="Cybersecurity specialist and ethical hacker. Penetration testing, vulnerability assessment, and security research."
+    />
+
+    <!-- Preconnect to CDN origins for faster resource fetching -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Fonts loaded via <link> instead of CSS @import (non-render-blocking) -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Instrument+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500;600;700&family=Syne:wght@400..800&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    />
+
+    <!-- Preload critical hero image so Three.js doesn't wait for it -->
+    <link
+      rel="preload"
+      href="./assets/images/bg.webp"
+      as="image"
+      type="image/webp"
+    />
+
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+  <body class="loading">
+    <!-- ===== PRELOADER (from Loading folder) ===== -->
+    <div class="preloader">
+      <div class="preloader-bg"></div>
+      <div class="preloader-grid"></div>
+      <div class="progress-marker">
+        <p>0%</p>
+      </div>
+    </div>
+
+    <!-- ===== HERO (from Loading folder layout) ===== -->
+    <section class="hero" id="hero">
+      <div class="hero-bg">
+        <canvas id="hero-canvas"></canvas>
+        <img src="assets/images/bg.webp" class="hero-static-img" alt="" />
+      </div>
+
+      <div class="hero-content-wrapper">
+        <div class="hero-top">
+          <div class="hero-top-left">
+            <span class="badge badge-white">JISS</span>
+          </div>
+          <nav id="main-nav" class="hero-top-right">
+            <div class="nav-links">
+              <a href="#about">About</a>
+              <a href="#projects">Projects</a>
+              <a href="#skills">Skills</a>
+              <a href="#contact">Contact</a>
+            </div>
+          </nav>
+        </div>
+
+        <!-- MAIN TITLE -->
+        <!-- 
+        <div class="hero-title hero-typo">
+          <div class="typo-row">
+            <pre class="huge-symbol-ascii" aria-label="DEV" role="img">
+              
+██████╗     ███████╗    ██╗   ██╗
+██╔══██╗    ██╔════╝    ██║   ██║
+██║  ██║    █████╗      ██║   ██║
+██║  ██║    ██╔══╝      ╚██╗ ██╔╝
+██████╔╝    ███████╗     ╚████╔╝ 
+╚═════╝     ╚══════╝      ╚═══╝            
+    </pre>
+          </div>
+        </div>
+        -->
+
+        <!-- BOTTOM BAR -->
+        <div class="hero-subtitle hero-bottom">
+          <h3>KERALA</h3>
+          <h3>INDIA BASED</h3>
+          <h3 id="live-time">--:--:-- IST</h3>
+
+          <h3>SCROLL DOWN</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="section about" id="about">
+      <div class="section-label">// 01 â€” About</div>
+      <div class="about-content">
+        <p class="about-text">
+          I'm a cybersecurity enthusiast passionate about breaking and securing
+          digital systems. With deep expertise in penetration testing,
+          vulnerability research, and network security, I work to identify
+          weaknesses before they can be exploited. Currently active on Hack The
+          Box and always pushing boundaries in offensive security.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section class="section projects" id="projects">
+      <div class="section-label">// 02 â€” Projects</div>
+      <div class="projects-scroll">
+        <!-- cards injected dynamically from projects.json -->
+      </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section class="section skills" id="skills">
+      <div class="section-label">// 03 â€” Skills</div>
+      <div class="skills-terminal">
+        <div class="terminal-header">
+          <div class="terminal-dot"></div>
+          <div class="terminal-dot"></div>
+          <div class="terminal-dot"></div>
+          <span class="terminal-title">jiss@kali:~</span>
+        </div>
+        <div class="terminal-body">
+          <div class="terminal-line">
+            <span class="prompt">$ </span>cat skills.conf
+          </div>
+          <div class="terminal-line">
+            <span class="prompt">&gt; </span
+            ><span class="value">Penetration Testing</span>
+            <div class="skill-bar-container">
+              <div class="skill-bar" data-width="90"></div>
+            </div>
+          </div>
+          <div class="terminal-line">
+            <span class="prompt">&gt; </span
+            ><span class="value">Network Security</span>
+            <div class="skill-bar-container">
+              <div class="skill-bar" data-width="85"></div>
+            </div>
+          </div>
+          <div class="terminal-line">
+            <span class="prompt">&gt; </span
+            ><span class="value">Web App Security</span>
+            <div class="skill-bar-container">
+              <div class="skill-bar" data-width="88"></div>
+            </div>
+          </div>
+          <div class="terminal-line">
+            <span class="prompt">&gt; </span
+            ><span class="value">Python / Scripting</span>
+            <div class="skill-bar-container">
+              <div class="skill-bar" data-width="92"></div>
+            </div>
+          </div>
+          <div class="terminal-line">
+            <span class="prompt">&gt; </span
+            ><span class="value">Reverse Engineering</span>
+            <div class="skill-bar-container">
+              <div class="skill-bar" data-width="75"></div>
+            </div>
+          </div>
+          <div class="terminal-line">
+            <span class="prompt">&gt; </span
+            ><span class="value">Linux Administration</span>
+            <div class="skill-bar-container">
+              <div class="skill-bar" data-width="95"></div>
+            </div>
+          </div>
+          <div class="terminal-line">
+            <span class="prompt">&gt; </span
+            ><span class="value">OSINT / Recon</span>
+            <div class="skill-bar-container">
+              <div class="skill-bar" data-width="80"></div>
+            </div>
+          </div>
+          <div class="terminal-line">
+            <span class="prompt">$ </span><span class="cursor">_</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER REVEALER (from Mouse folder) ===== -->
+    <div class="footer-revealer"></div>
+
+    <!-- ===== FOOTER (from Mouse folder) ===== -->
+    <footer id="contact">
+      <div class="footer-images">
+        <div class="footer-hand-img">
+          <picture>
+            <source
+              media="(max-width: 768px)"
+              srcset="assets/images/testimage_mobile.webp"
+            />
+            <source
+              media="(min-width: 769px)"
+              srcset="assets/images/testimage.webp"
+            />
+            <img
+              class="ascii-hand"
+              src="assets/images/testimage.webp"
+              alt=""
+              loading="lazy"
+            />
+          </picture>
+        </div>
+      </div>
+
+      <div class="footer-content">
+        <nav class="footer-links">
+          <a href="https://github.com/jissjames322" target="_blank">GitHub</a>
+          <a href="https://linkedin.com/in/jissjames" target="_blank"
+            >LinkedIn</a
+          >
+          <a href="mailto:jissjames322@gmail.com">Email</a>
+        </nav>
+
+        <div class="footer-text">
+          <p class="copyright">&copy; jiss james</p>
+        </div>
+      </div>
+
+      <div class="footer-header">
+        <h1>
+          JUST<br class="mobile-br" />
+          A<br class="mobile-br" />
+          GUY<br />WHO<br class="mobile-br" />
+          LOVES<br />COMPUTERS.
+        </h1>
+      </div>
+    </footer>
+
+    <script type="module" src="assets/js/script.js"></script>
+  </body>
+</html>
+

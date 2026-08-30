@@ -1,0 +1,90 @@
+[
+  {
+    "id": "001",
+    "title": "MACFIESTA",
+    "description": "A full-stack event management platform built with Django and React Vite for a large-scale college fest. As the team lead for a 21+ member development team, I led the development of a production-ready platform that handled registrations for 1,000+ students and provided real-time event management capabilities.",
+    "techStack": ["Django", "React", "Vite", "Event Management"],
+    "liveUrl": "https://macfiesta.macfast.org/",
+    "githubUrl": "#",
+    "screenshot": "assets/images/projects/macfiesta/home.webp"
+  },
+  {
+    "id": "002",
+    "title": "Red Eye",
+    "description": "An open-source OSINT and IP intelligence platform built with Django and Python. It aggregates publicly available IP intelligence, including geolocation, network information, and threat reputation, to help security teams investigate suspicious IP addresses and support SOC monitoring and threat analysis.",
+    "techStack": ["Django", "OSINT", "SOC", "Python"],
+    "liveUrl": "#",
+    "githubUrl": "#",
+    "screenshot": "assets/images/projects/redeye/dashboard.webp"
+  },
+  {
+    "id": "003",
+    "title": "Instanza",
+    "description": "A full-stack social media platform inspired by Instagram, developed using the MERN stack and React. The application implements core social networking functionality with a modern frontend and a scalable backend architecture powered by MongoDB, Express, and Node.js.",
+    "techStack": ["React", "MERN Stack", "MongoDB", "Express", "Node.js"],
+    "liveUrl": "https://instanza-frontend.netlify.app/",
+    "githubUrl": "#",
+    "screenshot": "assets/images/projects/instanza/home.webp"
+  },
+  {
+    "id": "004",
+    "title": "NEO",
+    "description": "A Flutter-based music application that integrates yt-dlp for searching and downloading publicly available YouTube audio content. It supports local music playback, persistent data management with SQLite, and an ad-reduced listening experience through an integrated media player.",
+    "techStack": ["Flutter", "yt-dlp", "SQLite", "Dart"],
+    "liveUrl": "#",
+    "githubUrl": "#",
+    "screenshot": "assets/images/projects/neo/home.webp"
+  },
+  {
+    "id": "005",
+    "title": "Sentient Shield",
+    "description": "A hands-on SOC and SIEM laboratory focused on security monitoring, endpoint detection, and attack analysis using Wazuh. The project involved deploying virtualized Windows environments, configuring EDR and Wazuh agents, executing controlled attack simulations with Atomic Red Team, analyzing security telemetry, and mapping observed techniques to the MITRE ATT&CK framework.",
+    "techStack": ["Wazuh", "SIEM", "SOC", "EDR", "Atomic Red Team", "Windows"],
+    "liveUrl": "#",
+    "githubUrl": "#",
+    "screenshot": "assets/images/projects/shield/home.webp"
+  },
+  {
+    "id": "006",
+    "title": "Art Store",
+    "description": "A Flutter-based art store application designed to demonstrate mobile application development and CRUD functionality. The application provides an interface for creating, managing, updating, and deleting art records using a structured application workflow.",
+    "techStack": ["Flutter", "Dart", "CRUD"],
+    "liveUrl": "https://artshopflutter.netlify.app/",
+    "githubUrl": "#",
+    "screenshot": "assets/images/projects/artstore/home.webp"
+  },
+  {
+    "id": "007",
+    "title": "Hack The Box Writeups",
+    "description": "A technical collection of Hack The Box machine and Sherlock challenge writeups documenting practical security research and offensive security methodologies. The writeups cover reconnaissance, enumeration, vulnerability exploitation, privilege escalation, digital forensics, log analysis, post-exploitation, and Windows and Linux security techniques.",
+    "techStack": [
+      "Hack The Box",
+      "CTF",
+      "Penetration Testing",
+      "Digital Forensics",
+      "Linux",
+      "Windows"
+    ],
+    "liveUrl": "#",
+    "githubUrl": "https://github.com/jissjames322/HTB-Writeups",
+    "screenshot": "assets/images/projects/htb/icon.webp"
+  },
+  {
+    "id": "008",
+    "title": "Acquisitions",
+    "description": "A security-focused REST API built with Node.js and Express, featuring JWT authentication, role-based access control, input validation, bot protection, rate limiting, structured logging, and PostgreSQL integration through Drizzle ORM. The project also implements Docker-based development and production environments, automated testing and code quality checks, and CI/CD pipelines with GitHub Actions, with support for multi-architecture container builds and Kubernetes deployment.",
+    "techStack": [
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "Drizzle ORM",
+      "Docker",
+      "GitHub Actions",
+      "Jest",
+      "Arcjet"
+    ],
+    "liveUrl": "#",
+    "githubUrl": "https://github.com/jissjames322/acquisitions",
+    "screenshot": ""
+  }
+]
