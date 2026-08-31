@@ -1155,5 +1155,186 @@ if (heroCanvas && window.innerWidth > 768) {
 
   heroRender();
 }
+// ===================================================================
+// INTERACTIVE TERMINAL
+// ===================================================================
+let currentDir = "~";
+function playAsciiRickroll(outLine, isCurl) {
+  if (!isCurl) {
+    outLine.innerHTML = "nice try<br><br>";
+  } else {
+    outLine.innerHTML = "Downloading ASCII stream...<br><br>";
+  }
+  const asciiChars = " .:-=+*#%@"; 
+  const video = document.createElement("video");
+  video.src = "assets/short_rickroll.mp4";
+  video.style.display = "none";
+  outLine.appendChild(video);
 
+  const pre = document.createElement("pre");
+  pre.style.fontSize = "7px";
+  pre.style.lineHeight = "7px";
+  pre.style.color = "#ccc";
+  pre.style.fontFamily = "monospace";
+  pre.style.overflow = "hidden";
+  pre.style.whiteSpace = "pre";
+  outLine.appendChild(pre);
 
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d", { willReadFrequently: true });
+  const width = 120;
+  const height = 45; 
+
+  video.addEventListener("play", () => {
+    const drawFrame = () => {
+      if (video.paused || video.ended) return;
+      canvas.width = width;
+      canvas.height = height;
+      ctx.drawImage(video, 0, 0, width, height);
+      const frame = ctx.getImageData(0, 0, width, height);
+      let asciiStr = "";
+      for (let i = 0; i < frame.data.length; i += 4) {
+        const r = frame.data[i];
+        const g = frame.data[i+1];
+        const b = frame.data[i+2];
+        const brightness = (r + g + b) / 3;
+        const charIndex = Math.floor((brightness / 255) * (asciiChars.length - 1));
+        asciiStr += asciiChars[charIndex];
+        if ((i / 4 + 1) % width === 0) asciiStr += "\n";
+      }
+      pre.textContent = asciiStr;
+      requestAnimationFrame(drawFrame);
+    };
+    drawFrame();
+  });
+
+  video.play().catch(e => {
+    pre.textContent = "Autoplay blocked. Click here to play.";
+    pre.style.cursor = "pointer";
+    pre.addEventListener("click", () => video.play());
+  });
+}
+const termInput = document.getElementById("terminal-input");
+if (termInput) {
+  termInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const val = this.value.trim();
+      const parentLine = this.parentElement;
+      const terminalBody = parentLine.parentElement;
+      
+      const args = val.split(" ").filter(Boolean);
+      const cmd = args[0];
+      
+      const outLine = document.createElement("div");
+      outLine.className = "terminal-output";
+      
+      if (!val) {
+        // empty command
+      } else if (cmd === "cd") {
+        const target = args[1] || "~";
+        if (target === "~" || target === "/") {
+          currentDir = "~";
+        } else if (target === "root") {
+          if (currentDir === "~") currentDir = "~/root";
+          else outLine.textContent = `bash: cd: ${target}: No such file or directory`;
+        } else if (target === "desktop") {
+          if (currentDir === "~/root") currentDir = "~/root/desktop";
+          else outLine.textContent = `bash: cd: ${target}: No such file or directory`;
+        } else if (target === "root/desktop") {
+          if (currentDir === "~") currentDir = "~/root/desktop";
+          else outLine.textContent = `bash: cd: ${target}: No such file or directory`;
+        } else if (target === "..") {
+          if (currentDir === "~/root/desktop") currentDir = "~/root";
+          else if (currentDir === "~/root") currentDir = "~";
+        } else {
+          outLine.textContent = `bash: cd: ${target}: No such file or directory`;
+        }
+        
+        const termTitle = document.querySelector(".terminal-title");
+        if (termTitle) {
+          termTitle.textContent = `jiss@kali:${currentDir}`;
+        }
+      } else if (cmd === "ls") {
+        let dirToLs = currentDir;
+        if (args[1] && !args[1].startsWith("-")) {
+            if (currentDir === "~" && args[1] === "root") dirToLs = "~/root";
+            else if (currentDir === "~" && args[1].replace(/\/$/, "") === "root/desktop") dirToLs = "~/root/desktop";
+            else dirToLs = "unknown";
+        }
+
+        if (dirToLs === "~") {
+          outLine.textContent = "assets  index.html  package.json  readme.txt  roll.sh  root";
+        } else if (dirToLs === "~/root") {
+          outLine.textContent = "desktop";
+        } else if (dirToLs === "~/root/desktop") {
+          outLine.textContent = "flag.txt";
+        } else {
+           outLine.textContent = `ls: cannot access '${args[1]}': No such file or directory`;
+        }
+      } else if (cmd === "echo") {
+        outLine.textContent = args.slice(1).join(" ");
+      } else if (cmd === "cat") {
+        let filePath = args[1] || "";
+        if (currentDir === "~/root" && filePath === "desktop/flag.txt") filePath = "root/desktop/flag.txt";
+        if (currentDir === "~/root/desktop" && filePath === "flag.txt") filePath = "root/desktop/flag.txt";
+        
+        if (filePath === "readme.txt") {
+          if (currentDir === "~") {
+            outLine.textContent = "the flag is hidden in the root directory and you can view the flag by typing cat root/desktop/flag.txt";
+          } else {
+            outLine.textContent = `cat: readme.txt: No such file or directory`;
+          }
+        } else if (filePath === "flag.txt" || filePath === "root/desktop/flag.txt" || filePath === "/root/desktop/flag.txt") {
+          playAsciiRickroll(outLine, false);
+        } else {
+          outLine.textContent = `cat: ${args[1] || ''}: No such file or directory`;
+        }
+      } else if (cmd === "curl") {
+        if (args[1] === "ascii.live/rick" || args[1] === "https://ascii.live/rick") {
+          playAsciiRickroll(outLine, true);
+        } else {
+          outLine.textContent = `curl: (6) Could not resolve host: ${args[1] || ''}`;
+        }
+      } else if (cmd === "./roll.sh" || cmd === "bash" && args[1] === "roll.sh" || cmd === "sh" && args[1] === "roll.sh") {
+        if (currentDir === "~") {
+          playAsciiRickroll(outLine, false);
+        } else {
+          outLine.textContent = `bash: ./roll.sh: No such file or directory`;
+        }
+      } else if (cmd === "whoami") {
+        outLine.textContent = "jiss";
+      } else if (cmd === "pwd") {
+        outLine.textContent = currentDir === "~" ? "/home/jiss" : "/home/jiss" + currentDir.substring(1);
+      } else if (cmd === "clear") {
+        const lines = terminalBody.querySelectorAll(".terminal-line, .terminal-output");
+        lines.forEach(line => {
+          if (line.id !== "interactive-line") line.remove();
+        });
+        this.value = "";
+        return; 
+      } else {
+        outLine.textContent = `bash: ${cmd}: command not found`;
+      }
+      
+      const cmdLine = document.createElement("div");
+      cmdLine.className = "terminal-line";
+      cmdLine.innerHTML = `<span class="prompt">$ </span><span class="value">${val}</span>`;
+      terminalBody.insertBefore(cmdLine, parentLine);
+      
+      if (val && cmd !== "clear" && outLine.innerHTML) {
+        terminalBody.insertBefore(outLine, parentLine);
+      }
+      
+      this.value = "";
+      termInput.focus();
+    }
+  });
+  
+  const termBody = document.querySelector(".terminal-body");
+  if (termBody) {
+    termBody.addEventListener("click", () => {
+      termInput.focus();
+    });
+  }
+}

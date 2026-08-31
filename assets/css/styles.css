@@ -689,6 +689,23 @@ nav#main-nav {
   }
 }
 
+#terminal-input {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: "Space Mono", monospace;
+  font-size: 0.8rem;
+  outline: none;
+  width: 70%;
+}
+
+.terminal-output {
+  color: #ccc;
+  width: 100%;
+  white-space: pre-wrap;
+  margin-top: 0.25rem;
+}
+
 /* ===== FOOTER REVEALER (from Mouse folder) ===== */
 .footer-revealer {
   position: relative;
