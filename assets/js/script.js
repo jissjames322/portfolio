@@ -720,7 +720,10 @@ document.querySelectorAll("img.ascii-hand").forEach((image) => {
   const wrapper = image.closest(".footer-hand-img");
   wrapper.appendChild(canvas);
 
+  let initialized = false;
   const start = () => {
+    if (initialized) return;
+    initialized = true;
     const hand = setupHand(image);
     hands.push(hand);
     // Layer interactive RGB-split effect on top of the ASCII canvas
@@ -732,7 +735,7 @@ document.querySelectorAll("img.ascii-hand").forEach((image) => {
     });
   };
   if (image.complete && image.naturalWidth) start();
-  else image.addEventListener("load", start);
+  image.addEventListener("load", start);
 });
 
 const highlightCluster = (cells, startCell) => {

@@ -73,7 +73,14 @@ export class InteractiveCursorEffect {
     this.container.appendChild(el);
 
     // ---- Source texture ----
-    this.texture = new THREE.Texture(this.source);
+    if (this.source instanceof HTMLVideoElement) {
+      this.texture = new THREE.VideoTexture(this.source);
+    } else if (this.source instanceof HTMLCanvasElement) {
+      this.texture = new THREE.CanvasTexture(this.source);
+    } else {
+      this.texture = new THREE.Texture(this.source);
+    }
+    
     this.texture.minFilter = THREE.LinearFilter;
     this.texture.magFilter = THREE.LinearFilter;
     this.texture.generateMipmaps = false;
