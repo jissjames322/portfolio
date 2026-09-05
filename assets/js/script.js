@@ -8,6 +8,12 @@ import { InteractiveCursorEffect } from "./cursor-effect.js";
 
 gsap.registerPlugin(Flip, ScrollTrigger, SplitText);
 
+// Force scroll to top immediately so the page always starts at the hero
+window.scrollTo(0, 0);
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
 // ===================================================================
 // LIVE TIMEZONE CLOCK
 // ===================================================================
@@ -265,8 +271,14 @@ function initScrollAnimations() {
   document.querySelectorAll('#main-nav a[href^="#"]').forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
-      const target = document.querySelector(link.getAttribute("href"));
-      if (target) lenis.scrollTo(target, { offset: -50 });
+      const href = link.getAttribute("href");
+      if (href === "#contact") {
+        // Scroll to the very bottom so the footer fully reveals
+        lenis.scrollTo("bottom");
+      } else {
+        const target = document.querySelector(href);
+        if (target) lenis.scrollTo(target, { offset: -50 });
+      }
     });
   });
 
