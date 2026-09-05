@@ -34,6 +34,9 @@ body::-webkit-scrollbar {
 body.loading {
   overflow: hidden;
 }
+html:has(body.loading) {
+  overflow: hidden;
+}
 
 img {
   width: 100%;
